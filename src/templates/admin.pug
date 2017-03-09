@@ -1,0 +1,8 @@
+extends admin_layout
+
+block content
+	h1 Dashboard
+
+	h2 User IP's
+	each visitor in visitors
+		p Visitor #{visitor.ip}

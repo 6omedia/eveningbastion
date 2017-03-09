@@ -1,0 +1,19 @@
+extends layout
+
+block content
+	.container-fluid 
+		section
+			.home_login
+				h2 login
+				form(method="POST", action="")
+					ul.list
+						li 
+							input(type="text", name="email", placeholder="Email...")
+						li 
+							input(type="password", name="password", placeholder="Password...")
+						li 
+							button Login
+			
+			if error != undefined
+				.errorBox
+					p #{error}

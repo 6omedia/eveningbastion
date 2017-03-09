@@ -1,0 +1,56 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	
+}
+
+h1, h2, h3 {
+	font-family: 'Baloo Thambi', cursive;
+}
+
+p, li, input, button, a {
+	font-family: 'Nunito', sans-serif;
+}
+
+img {
+	width: 100%;
+}
+
+/* dry classes */
+
+.list {
+	list-style: none;
+	padding: 0px;
+}
+
+.errorBox {
+	font-size: 20px;
+    background: #efefef;
+    display: inline-block;
+    padding: 10px;
+    border: solid 2px #b50000;
+}
+
+/* Home Login */
+
+.home_login {
+    border-top: solid 2px #000;
+}
+
+.home_login form input {
+    font-size: 16px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.home_login button {
+    font-size: 16px;
+    background: #ccdbff;
+    border: none;
+    padding: 5px 10px;
+    color: #000;
+    border: solid 1px #c0c0ff;
+}
+
