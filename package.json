@@ -1,10 +1,10 @@
 {
-  "name": "cms",
+  "name": "Evening Bastion",
   "version": "1.0.0",
-  "description": "A basic cms to extend future projects from",
+  "description": "Evening Bastion",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "start": "node app.js"
   },
   "author": "Mike Rockett",
   "license": "ISC",

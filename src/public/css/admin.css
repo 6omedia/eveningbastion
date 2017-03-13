@@ -38,6 +38,15 @@ label {
     vertical-align: top;
 }
 
+table {
+ /*   background: #ccc;*/
+}
+
+td, th {
+    padding: 5px 10px;
+    text-align: left;
+}
+
 /* dry classes */
 
 .delbtn {
@@ -64,6 +73,20 @@ label {
 
 .toggleBox #cb_toggle {
     width: auto;
+}
+
+/* Custom Table Styles */
+
+.dataTable th {
+    background: #91b2ff;
+    color: #2a4863;
+}
+
+.dataTable tr:nth-child(odd) {
+    background: #dcedff;
+}
+.dataTable tr:nth-child(even) {
+    background: #c7e2ff;
 }
 
 header {

@@ -3,6 +3,20 @@ extends admin_layout
 block content
 	h1 Dashboard
 
-	h2 User IP's
-	each visitor in visitors
-		p Visitor #{visitor.ip}
+	//- h2 User IP's
+	//- each visitor in visitors
+	//- 	p Visitor #{visitor.ip}
+
+	h2 Recent Submissions
+	table.dataTable
+		tr
+			th IP
+			th Domain
+			th Data Type
+			th Date Value
+		each sub in submissions
+			tr 
+				td #{sub.ip}
+				td #{sub.domain}
+				td #{sub.data_point.name}
+				td #{sub.data_point.value} 

@@ -3,6 +3,7 @@ var express = require('express');
 var cms_admin = express.Router();
 var User = require('../../models/user');
 var Visitor = require('../../models/visitor');
+var Submission = require('../../models/submission');
 var Post = require('../../models/post');
 var Taxonomy = require('../../models/taxonomy');
 
@@ -12,13 +13,13 @@ var mid = require('../../middleware');
 
 cms_admin.get('/', mid.checkUserAdmin, function(req, res, next){
 
-    Visitor.find({}, function(err, visitors){
+    Submission.find({}).limit(10).sort({ $natural: -1 }).exec(function(err, submissions){
 
         res.render('admin', {
             title: 'Admin',
             user: req.thisUser,
             fullname: req.thisUser.fullname,
-            visitors: visitors
+            submissions: submissions
         });
 
     });

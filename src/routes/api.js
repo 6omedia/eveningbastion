@@ -4,46 +4,64 @@ var api = express.Router();
 var User = require('../models/user');
 var Visitor = require('../models/visitor');
 var Post = require('../models/post');
+var Submission = require('../models/submission');
 // var Category = require('../models/category');
 var Taxonomy = require('../models/taxonomy');
 
 var mid = require('../middleware');
+var track = require('../middleware/track');
 
-api.post('/add_visitor', function(req, res, next){
+// api.post('/track', );
 
-	console.log('yeah apiu');
+api.post('/add-submissions', track.canAccessApi, function(req, res, next){
 
-	// const ip = req.body.ip;
-	// const fullname = req.body.name;
+	let data = {};
+    data.success = '0';
 
-	// let data = {};
- //    data.success = '0';
+    const ip = req.ip;
+    const dataPoints = JSON.parse(req.body.dataPoints);
 
- //    const visitor = new Visitor(
- //        {
- //            ip: ip,
- //            fullname: fullname
- //        }
- //    );
+    let subFailed = false;
 
- //    //save model to MongoDB
- //    visitor.save(function (err) {
+    for(sub of dataPoints){
 
- //        if(err) {
- //            data.error = err;
- //            res.send(data);
- //        }else{
- //        	data.msg = 'it worked???';
- //            data.success = '1';
- //            res.send(data);
- //        }
+    	const submission = new Submission(
+	        {
+	            ip: ip,
+	            date: Date.now(),
+				domain: req.body.domain,
+				data_point: {
+					name: sub.name,
+					value: sub.value
+				}
+	        }
+	    );
 
- //    });
+	    submission.save(function(err) {
+	        if(err) {
+	        	subFailed = true;
+	        }
+	    });
 
- //    res.header("Access-Control-Allow-Origin", "*");
-	// res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    }
 
-    res.send('Adding visitor...');
+
+    if(!subFailed){
+    	data.success = '1';
+    }
+
+    res.send(data);
 
 });
+
+api.post('/add-pageviews', track.canAccessApi, function(req, res, next){
+
+	// add to pages if page not in db
+
+});
+
+api.post('/add-clicks', track.canAccessApi, function(req, res, next){
+
+});
+
 module.exports = api;
