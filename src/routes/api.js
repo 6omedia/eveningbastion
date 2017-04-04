@@ -18,7 +18,13 @@ api.post('/add-submissions', track.canAccessApi, function(req, res, next){
 	let data = {};
     data.success = '0';
 
-    const ip = req.ip;
+    // const ip = req.ip;
+
+    const ip = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
+
     const dataPoints = JSON.parse(req.body.dataPoints);
 
     let subFailed = false;
